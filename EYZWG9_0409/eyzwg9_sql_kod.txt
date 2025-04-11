@@ -139,6 +139,3 @@ utca CHAR (15),
 hsz INT (5)
 
 );
-
-ALTER TABLE HALLGAT (
-ADD PRIMARY KEY (hallgató);
