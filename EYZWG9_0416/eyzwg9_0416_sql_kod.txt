@@ -1,0 +1,426 @@
+EYZWG9_0416
+
+------------------------
+
+1. Feladat
+
+Megvalósítás: Apex
+
+CREATE TABLE Auto2 (
+
+Rendszám CHAR (7) NOT NULL primary key,
+Típus CHAR (25) NOT NULL,
+Szín CHAR (15), 
+Ár NUMBER (11),
+Kor NUMBER (11),
+Tulaj NUMBER (11)
+
+);
+
+
+CREATE TABLE Tulajdonos2 (
+
+Tkód NUMBER (3) NOT NULL primary key,
+Név CHAR (15) NOT NULL,
+Cím CHAR (10),
+Telefon NUMBER (10)
+
+
+);
+
+
+Megvalósítás: MariaDB
+
+CREATE TABLE Auto2 (
+
+Rendszám CHAR (7) NOT NULL,
+Típus CHAR (25) NOT NULL,
+Szín CHAR (15), 
+Ár INT (11),
+Kor INT (11),
+Tulaj INT (11)
+
+);
+
+
+CREATE TABLE Tulajdonos2 (
+
+Tkód INT (3) NOT NULL primary key,
+Név CHAR (15),
+Cím CHAR (10),
+Telefon INT (10)
+
+
+);
+----------------------
+2.FELADAT
+
+Megvalósítás: Apex
+
+1.
+ALTER TABLE Auto2 RENAME TO Jarmu;
+ALTER TABLE Jarmu RENAME TO Auto2;
+
+2.
+ALTER TABLE Tulajdonos2 RENAME COLUMN Név TO name;
+ALTER TABLE Tulajdonos2 RENAME COLUMN name TO Név;
+
+3.
+ALTER TABLE Auto2 ADD Koros NUMBER(2) CHECK (Koros > 0);
+
+4.
+ALTER TABLE Auto2 DROP COLUMN Koros;
+
+5.
+ALTER TABLE Auto2 ADD Koros NUMBER(2) CHECK (Koros > 0);
+
+6.
+ALTER TABLE Tulajdonos2 MODIFY Telefon VARCHAR2(30);
+ALTER TABLE Tulajdonos2 MODIFY Telefon VARCHAR2(20);
+
+7.
+ALTER TABLE Tulajdonos2 ADD CONSTRAINT uq_Tkód UNIQUE (Tkód);
+ALTER TABLE Tulajdonos2 DROP CONSTRAINT uq_Tkód;
+
+
+Megvalósítás: MariaDB
+1.
+ALTER TABLE Auto2 RENAME TO Jarmu;
+ALTER TABLE Jarmu RENAME TO Auto2;
+
+2.
+-
+
+3.
+ALTER TABLE Auto2 ADD Koros INT CHECK (Koros > 0);
+
+4.
+ALTER TABLE Auto2 DROP COLUMN Koros;
+
+5.
+ALTER TABLE Auto2 ADD Koros INT CHECK (Koros > 0);
+
+6.
+ALTER TABLE Tulajdonos2 MODIFY Telefon VARCHAR(30);
+ALTER TABLE Tulajdonos2 MODIFY Telefon VARCHAR(20);
+
+7.
+-
+----------------------
+3.FELADAT
+
+Megvalósítás: Apex
+
+AUTO2
+
+INSERT ALL
+    INTO AUTO2 VALUES ('FER-831', 'Opel Corsa', 'Piros', 18, 390, 101)
+    INTO AUTO2 VALUES ('GDF-525', 'Renault Twingo', 'Fekete', 16, 580, 101)
+    INTO AUTO2 VALUES ('HUB-936', 'Suzuki Swift', 'Fekete', 13, 200, 103)
+    INTO AUTO2 VALUES ('IXL-239', 'Suzuki Swift', 'Zöld', 11, 920, 103)
+    INTO AUTO2 VALUES ('JAH-425', 'Skoda Fabia', 'Piros', 13, 670, 102)
+    INTO AUTO2 VALUES ('JCD-443', 'Opel Astra', 'Fehér', 12, 920, 102)
+    INTO AUTO2 VALUES ('KAP-290', 'BMW 316', 'Fekete', 6, 3250, 107)
+    INTO AUTO2 VALUES ('KFT-204', 'Opel Astra', 'Szürke', 7, 1250, 106)
+    INTO AUTO2 VALUES ('MLM-211', 'Toyota Yaris', 'Fehér', 3, 1850, 105)
+SELECT * FROM dual;
+
+TULAJDONOS2
+
+INSERT ALL
+    INTO TULAJDONOS2 VALUES (100, 'Kis János', 'Eger', '209555666')
+    INTO TULAJDONOS2 VALUES (101, 'Kis János', 'Eger', '209555666')
+    INTO TULAJDONOS2 VALUES (102, 'Kis Éva', 'Szerencs', '308764432')
+    INTO TULAJDONOS2 VALUES (103, 'Retek Ödön', 'Miskolc', '308764432')
+    INTO TULAJDONOS2 VALUES (104, 'Virág Zoltán', 'Nyék', '703355440')
+    INTO TULAJDONOS2 VALUES (105, 'Nagy Eszter', 'Ózd', '703355443')
+    INTO TULAJDONOS2 VALUES (106, 'Kovács Magor', 'Szerencs', '703855446')
+    INTO TULAJDONOS2 VALUES (107, 'Kovács Magor', 'Szerencs', '703855446')
+    INTO TULAJDONOS2 VALUES (109, 'Asztal Antal', 'Eger', '209955666')
+SELECT * FROM dual;
+
+
+
+
+Megvalósítás: MariaDB
+
+Auto2
+
+INSERT INTO Auto2 VALUES ('FER-831','Opel Corsa','Piros','18','390','101');
+INSERT INTO Auto2 VALUES ('GDF-525','Renault Twingo','Fekete','16','280','103');
+INSERT INTO Auto2 VALUES ('HUB-936','Suzuki Swift','Fekete','16','500','104');
+INSERT INTO Auto2 VALUES ('IXL-239','Suzuki Swift','Zöld','15','450','105');
+INSERT INTO Auto2 VALUES ('JAH-425','Skoda Fabia','Piros','13','620','102');
+INSERT INTO Auto2 VALUES ('JCD-443','Opel Astra','Fehér','12','990','107');
+INSERT INTO Auto2 VALUES ('KAP-290','BMW 316','Fekete','6','3250','102');
+INSERT INTO Auto2 VALUES ('KFT-204','Opel Astra','Szürke','7','1250','106');
+INSERT INTO Auto2 VALUES ('MLM-211','Toyota Yaris','Fehér','3','1850','105');
+
+Tulajdonos2
+INSERT INTO Tulajdonos2 VALUES ('100', 'Kis János', 'Eger', '209555666');
+INSERT INTO Tulajdonos2 VALUES ('101', 'Kis János', 'Eger', '209555666');
+INSERT INTO Tulajdonos2 VALUES ('102', 'Kis Éva', 'Szerencs', '308764432');
+INSERT INTO Tulajdonos2 VALUES ('103', 'Retek Ödön', 'Miskolc', '308764432');
+INSERT INTO Tulajdonos2 VALUES ('104', 'Virág Zoltán', 'Nyék', '703355440');
+INSERT INTO Tulajdonos2 VALUES ('105', 'Nagy Eszter', 'Ózd', '703355440');
+INSERT INTO Tulajdonos2 VALUES ('106', 'Kovács Magor', 'Szerencs', '703855444');
+INSERT INTO Tulajdonos2 VALUES ('107', 'Kovács Magor', 'Szerencs', '703855445');
+INSERT INTO Tulajdonos2 VALUES ('109', 'Asztal Antal', 'Eger', '209555666');
+----------------------
+
+
+----------------------
+4.FELADAT
+
+Megvalósítás: Apex
+
+CREATE TABLE Dolgozó (
+
+Kód NUMBER(4),
+Név CHAR(20),
+Város CHAR(20),
+Beosztás CHAR (20),
+Belépés date,
+Fizetés NUMBER(7),
+Osztály CHAR(15)
+
+);
+
+
+Megvalósítás: MariaDB
+
+CREATE TABLE Dolgozó (
+
+Kód INT(4),
+Név CHAR(20),
+Város CHAR(20),
+Beosztás CHAR (20),
+Belépés date,
+Fizetés INT(7),
+Osztály CHAR(15)
+
+);
+
+Megvalósítás: Apex
+
+1.
+ALTER TABLE Dolgozó
+ADD PRIMARY KEY (Kód);
+
+2.
+ALTER TABLE Dolgozó
+MODIFY Név VARCHAR(256) NOT NULL;
+
+3.
+INSERT INTO DOLGOZÓ VALUES (1016, 'Kis Elek',       'Eger',    'Programozó', TO_DATE('2010-01-01','YYYY-MM-DD'), 290000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1026, 'Kis Jenő',       'Eger',    'Tesztelő',   TO_DATE('2005-01-01','YYYY-MM-DD'), 270000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1028, 'Kis Géza',       'Miskolc', 'Programozó', TO_DATE('2011-03-15','YYYY-MM-DD'), 250000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1039, 'Kő Benő',        'Budapest','Elnök',      TO_DATE('2005-01-01','YYYY-MM-DD'), 650000, 'Irányítás');
+INSERT INTO DOLGOZÓ VALUES (1099, 'Mezei Virág',    'Eger',    'Tesztelő',   TO_DATE('2006-03-01','YYYY-MM-DD'), 280000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1113, 'Merész Teréz',   'Budapest','Elemző',     TO_DATE('2009-08-05','YYYY-MM-DD'), 250000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1180, 'SP',             'DrBl',    'Oktató',     TO_DATE('2024-10-01','YYYY-MM-DD'), 100000, 'Tanszék');
+INSERT INTO DOLGOZÓ VALUES (1214, 'Sztár Pál',      'Budapest','Eladó',      TO_DATE('2012-01-08','YYYY-MM-DD'), 270000, 'Terjesztés');
+COMMIT;
+
+
+-------------------
+
+Megvalósítás: APEX ÉS MariaDB
+
+1.
+ALTER TABLE Dolgozó
+ADD PRIMARY KEY (Kód);
+
+2.
+ALTER TABLE Dolgozó
+MODIFY Név VARCHAR(256) NOT NULL;
+
+3.
+INSERT INTO Dolgozó VALUES ('1016','Kis Elek','Eger','Programozó','2010-01-01','290000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1026','Kis Jenő','Eger','Tesztelő','2005-01-01','270000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1028','Kis Géza','Miskolc','Programozó','2011-03-15','250000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1039','Kő Benő','Budapest','Elnök','2005-01-01','650000','Irányítás');
+INSERT INTO Dolgozó VALUES ('1099','Mezei Virág','Eger','Tesztelő','2006-03-01','280000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1113','Merész Teréz','Budapest','Elemző','2009-08-05','250000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1180','SP','DrBl','Oktató','2024-10-01','100000','Tanszék');
+INSERT INTO Dolgozó VALUES ('1214','Sztár Pál','Budapest','Eladó','2012-01-08','270000','Terjesztés');
+
+3.
+INSERT INTO Dolgozó VALUES (1014, 'Orosz Kristóf', 'Szerencs', 'Hallgató', CURDATE(), 350000, 'Fejlesztés');
+
+
+4. SELECT * FROM Dolgozó
+WHERE Név = 'Orosz Kristóf';
+
+5a.INSERT INTO Dolgozó VALUES (1073, 'Hibás Ilona', 'Miskolc', 'Elemző', CURDATE(), 3000000, 'Fejlesztés');
+
+
+5b.UPDATE Dolgozó
+SET Beosztás = 'Fejlesztő', Fizetés = 300000
+WHERE Név = 'Hibás Ilona';
+
+6. SELECT Név
+FROM Dolgozó
+WHERE Város = 'Eger';
+
+7. SELECT Név, Város
+FROM Dolgozó
+WHERE Város <> 'Eger';
+
+
+8. SELECT Név, Város
+FROM Dolgozó
+WHERE Város <> 'Budapest';
+
+9. SELECT Név
+FROM Dolgozó
+WHERE Osztály = 'Fejlesztés'
+ORDER BY Név ASC;
+
+10. SELECT Név, Fizetés
+FROM Dolgozó
+ORDER BY Fizetés DESC;
+
+
+10a. SELECT Név
+FROM Dolgozó
+WHERE Név LIKE 'M%';
+
+11.SELECT Név
+FROM Dolgozó
+WHERE Név LIKE '%a' OR Név LIKE '%z';
+
+
+12. SELECT Kód, Név
+FROM Dolgozó
+WHERE Kód LIKE '%4%';
+
+13.
+SELECT Kód, Név
+FROM Dolgozó
+WHERE Kód LIKE '%1%' AND Kód LIKE '%2%' AND Kód LIKE '%4%';
+
+14.SELECT Név, Kód
+FROM Dolgozó
+WHERE Kód BETWEEN 1030 AND 1130;
+
+
+15. SELECT *
+FROM Dolgozó
+WHERE Város IS NULL;
+
+16. SELECT Név, Belépés
+FROM Dolgozó
+WHERE YEAR(Belépés) = 2024;
+
+17.SELECT Név, Belépés
+FROM Dolgozó
+WHERE Belépés BETWEEN '2012-01-08' AND '2024-10-01';
+
+18. SELECT Osztály
+FROM Dolgozó;
+
+19. SELECT DISTINCT Osztály
+FROM Dolgozó;
+
+20. SELECT Név
+FROM Dolgozó
+WHERE Osztály = 'Fejlesztés' AND Város = 'Miskolc';
+
+21. SELECT Név
+FROM Dolgozó
+WHERE Osztály IN ('Fejlesztés', 'Terjesztés')
+  AND Város <> 'Budapest';
+
+
+----------------------
+
+5.FELADAT
+
+Megvalósítás: Apex
+
+CREATE TABLE OKTATÓ (
+
+neptunkód NUMBER (7) primary key,
+név CHAR (25),
+tanszék CHAR (25)
+
+);
+
+CREATE TABLE TÁRGY (
+
+kód NUMBER (7) primary key,
+megnevezés CHAR (15),
+kredit NUMBER (7)
+
+);
+
+CREATE TABLE HALLGAT (
+
+hallgató CHAR (15) primary key,
+tárgy CHAR (15),
+félév NUMBER (7),
+vizsgajegy NUMBER (7)
+
+);
+
+CREATE TABLE HALLGATÓ (
+
+neptunkód CHAR (15) primary key, 
+név CHAR (15), 
+szül NUMBER (15), 
+tankör CHAR (15), 
+irsz NUMBER (5), 
+varos CHAR (15), 
+utca CHAR (15), 
+hsz NUMBER (5)
+
+);
+
+
+Megvalósítás: MariaDB
+
+
+
+
+CREATE TABLE OKTATÓ (
+
+neptunkód INT (7) primary key,
+név CHAR (25),
+tanszék CHAR (25)
+
+);
+
+
+
+
+CREATE TABLE TÁRGY (
+
+kód INT (7) primary key,
+megnevezés CHAR (15),
+kredit INT (7)
+
+);
+
+CREATE TABLE HALLGAT (
+
+hallgató CHAR (15) primary key,
+tárgy CHAR (15),
+félév INT (7),
+vizsgajegy INT (7)
+
+);
+
+
+CREATE TABLE HALLGATÓ (
+
+neptunkód CHAR (15) primary key, 
+név CHAR (15), 
+szül INT (15), 
+tankör CHAR (15), 
+irsz INT (5), 
+varos CHAR (15), 
+utca CHAR (15), 
+hsz INT (5)
+
+);
