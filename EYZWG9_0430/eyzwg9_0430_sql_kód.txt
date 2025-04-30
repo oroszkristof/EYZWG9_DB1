@@ -1,0 +1,253 @@
+1.FELADAT
+
+Megvalósítás: Apex
+
+CREATE TABLE Dolgozó (
+
+Kód NUMBER(4),
+Név CHAR(20),
+Város CHAR(20),
+Beosztás CHAR (20),
+Belépés date,
+Fizetés NUMBER(7),
+Osztály CHAR(15)
+
+);
+
+
+Megvalósítás: MariaDB
+
+CREATE TABLE Dolgozó (
+
+Kód INT(4),
+Név CHAR(20),
+Város CHAR(20),
+Beosztás CHAR (20),
+Belépés date,
+Fizetés INT(7),
+Osztály CHAR(15)
+
+);
+
+Megvalósítás: Apex
+
+1.
+ALTER TABLE Dolgozó
+ADD PRIMARY KEY (Kód);
+
+2.
+ALTER TABLE Dolgozó
+MODIFY Név VARCHAR(256) NOT NULL;
+
+3.
+INSERT INTO DOLGOZÓ VALUES (1016, 'Kis Elek',       'Eger',    'Programozó', TO_DATE('2010-01-01','YYYY-MM-DD'), 290000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1026, 'Kis Jenő',       'Eger',    'Tesztelő',   TO_DATE('2005-01-01','YYYY-MM-DD'), 270000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1028, 'Kis Géza',       'Miskolc', 'Programozó', TO_DATE('2011-03-15','YYYY-MM-DD'), 250000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1039, 'Kő Benő',        'Budapest','Elnök',      TO_DATE('2005-01-01','YYYY-MM-DD'), 650000, 'Irányítás');
+INSERT INTO DOLGOZÓ VALUES (1099, 'Mezei Virág',    'Eger',    'Tesztelő',   TO_DATE('2006-03-01','YYYY-MM-DD'), 280000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1113, 'Merész Teréz',   'Budapest','Elemző',     TO_DATE('2009-08-05','YYYY-MM-DD'), 250000, 'Fejlesztés');
+INSERT INTO DOLGOZÓ VALUES (1180, 'SP',             'DrBl',    'Oktató',     TO_DATE('2024-10-01','YYYY-MM-DD'), 100000, 'Tanszék');
+INSERT INTO DOLGOZÓ VALUES (1214, 'Sztár Pál',      'Budapest','Eladó',      TO_DATE('2012-01-08','YYYY-MM-DD'), 270000, 'Terjesztés');
+COMMIT;
+
+
+-------------------
+
+Megvalósítás: APEX ÉS MariaDB
+
+1.
+ALTER TABLE Dolgozó
+ADD PRIMARY KEY (Kód);
+
+2.
+ALTER TABLE Dolgozó
+MODIFY Név VARCHAR(256) NOT NULL;
+
+3.
+INSERT INTO Dolgozó VALUES ('1016','Kis Elek','Eger','Programozó','2010-01-01','290000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1026','Kis Jenő','Eger','Tesztelő','2005-01-01','270000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1028','Kis Géza','Miskolc','Programozó','2011-03-15','250000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1039','Kő Benő','Budapest','Elnök','2005-01-01','650000','Irányítás');
+INSERT INTO Dolgozó VALUES ('1099','Mezei Virág','Eger','Tesztelő','2006-03-01','280000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1113','Merész Teréz','Budapest','Elemző','2009-08-05','250000','Fejlesztés');
+INSERT INTO Dolgozó VALUES ('1180','SP','DrBl','Oktató','2024-10-01','100000','Tanszék');
+INSERT INTO Dolgozó VALUES ('1214','Sztár Pál','Budapest','Eladó','2012-01-08','270000','Terjesztés');
+
+3.
+INSERT INTO Dolgozó VALUES (1014, 'Orosz Kristóf', 'Szerencs', 'Hallgató', CURDATE(), 350000, 'Fejlesztés');
+
+
+4. SELECT * FROM Dolgozó
+WHERE Név = 'Orosz Kristóf';
+
+5a.INSERT INTO Dolgozó VALUES (1073, 'Hibás Ilona', 'Miskolc', 'Elemző', CURDATE(), 3000000, 'Fejlesztés');
+
+
+5b.UPDATE Dolgozó
+SET Beosztás = 'Fejlesztő', Fizetés = 300000
+WHERE Név = 'Hibás Ilona';
+
+6. SELECT Név
+FROM Dolgozó
+WHERE Város = 'Eger';
+
+7. SELECT Név, Város
+FROM Dolgozó
+WHERE Város <> 'Eger';
+
+
+8. SELECT Név, Város
+FROM Dolgozó
+WHERE Város <> 'Budapest';
+
+9. SELECT Név
+FROM Dolgozó
+WHERE Osztály = 'Fejlesztés'
+ORDER BY Név ASC;
+
+10. SELECT Név, Fizetés
+FROM Dolgozó
+ORDER BY Fizetés DESC;
+
+
+10a. SELECT Név
+FROM Dolgozó
+WHERE Név LIKE 'M%';
+
+11.SELECT Név
+FROM Dolgozó
+WHERE Név LIKE '%a' OR Név LIKE '%z';
+
+
+12. SELECT Kód, Név
+FROM Dolgozó
+WHERE Kód LIKE '%4%';
+
+13.
+SELECT Kód, Név
+FROM Dolgozó
+WHERE Kód LIKE '%1%' AND Kód LIKE '%2%' AND Kód LIKE '%4%';
+
+14.SELECT Név, Kód
+FROM Dolgozó
+WHERE Kód BETWEEN 1030 AND 1130;
+
+
+15. SELECT *
+FROM Dolgozó
+WHERE Város IS NULL;
+
+16. SELECT Név, Belépés
+FROM Dolgozó
+WHERE YEAR(Belépés) = 2024;
+
+17.SELECT Név, Belépés
+FROM Dolgozó
+WHERE Belépés BETWEEN '2012-01-08' AND '2024-10-01';
+
+18. SELECT Osztály
+FROM Dolgozó;
+
+19. SELECT DISTINCT Osztály
+FROM Dolgozó;
+
+20. SELECT Név
+FROM Dolgozó
+WHERE Osztály = 'Fejlesztés' AND Város = 'Miskolc';
+
+21. SELECT Név
+FROM Dolgozó
+WHERE Osztály IN ('Fejlesztés', 'Terjesztés')
+  AND Város <> 'Budapest';
+
+----------------------------------------------
+
+3.FELADAT
+
+Megvalósítás: Apex
+
+CREATE TABLE OKTATÓ (
+
+neptunkód NUMBER (7) primary key,
+név CHAR (25),
+tanszék CHAR (25)
+
+);
+
+CREATE TABLE TÁRGY (
+
+kód NUMBER (7) primary key,
+megnevezés CHAR (15),
+kredit NUMBER (7)
+
+);
+
+CREATE TABLE HALLGAT (
+
+hallgató CHAR (15) primary key,
+tárgy CHAR (15),
+félév NUMBER (7),
+vizsgajegy NUMBER (7)
+
+);
+
+CREATE TABLE HALLGATÓ (
+
+neptunkód CHAR (15) primary key, 
+név CHAR (15), 
+szül NUMBER (15), 
+tankör CHAR (15), 
+irsz NUMBER (5), 
+varos CHAR (15), 
+utca CHAR (15), 
+hsz NUMBER (5)
+
+);
+
+
+Megvalósítás: MariaDB
+
+
+
+
+CREATE TABLE OKTATÓ (
+
+neptunkód INT (7) primary key,
+név CHAR (25),
+tanszék CHAR (25)
+
+);
+
+
+
+
+CREATE TABLE TÁRGY (
+
+kód INT (7) primary key,
+megnevezés CHAR (15),
+kredit INT (7)
+
+);
+
+CREATE TABLE HALLGAT (
+
+hallgató CHAR (15) primary key,
+tárgy CHAR (15),
+félév INT (7),
+vizsgajegy INT (7)
+
+);
+
+
+CREATE TABLE HALLGATÓ (
+
+neptunkód CHAR (15) primary key, 
+név CHAR (15), 
+szül INT (15), 
+tankör CHAR (15), 
+irsz INT (5), 
+varos CHAR (15), 
+utca CHAR (15), 
+hsz INT (5)
+
+);
