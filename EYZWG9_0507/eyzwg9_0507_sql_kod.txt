@@ -1,0 +1,89 @@
+3.FELADAT
+
+Megvalósítás: Apex
+
+CREATE TABLE OKTATÓ (
+
+neptunkód NUMBER (7) primary key,
+név CHAR (25),
+tanszék CHAR (25)
+
+);
+
+CREATE TABLE TÁRGY (
+
+kód NUMBER (7) primary key,
+megnevezés CHAR (15),
+kredit NUMBER (7)
+
+);
+
+CREATE TABLE HALLGAT (
+
+hallgató CHAR (15) primary key,
+tárgy CHAR (15),
+félév NUMBER (7),
+vizsgajegy NUMBER (7)
+
+);
+
+CREATE TABLE HALLGATÓ (
+
+neptunkód CHAR (15) primary key, 
+név CHAR (15), 
+szül NUMBER (15), 
+tankör CHAR (15), 
+irsz NUMBER (5), 
+varos CHAR (15), 
+utca CHAR (15), 
+hsz NUMBER (5)
+
+);
+
+
+Megvalósítás: MariaDB
+
+
+
+
+CREATE TABLE OKTATÓ (
+
+neptunkód INT (7) primary key,
+név CHAR (25),
+tanszék CHAR (25)
+
+);
+
+
+
+
+CREATE TABLE TÁRGY (
+
+kód INT (7) primary key,
+megnevezés CHAR (15),
+kredit INT (7)
+
+);
+
+CREATE TABLE HALLGAT (
+
+hallgató CHAR (15) primary key,
+tárgy CHAR (15),
+félév INT (7),
+vizsgajegy INT (7)
+
+);
+
+
+CREATE TABLE HALLGATÓ (
+
+neptunkód CHAR (15) primary key, 
+név CHAR (15), 
+szül INT (15), 
+tankör CHAR (15), 
+irsz INT (5), 
+varos CHAR (15), 
+utca CHAR (15), 
+hsz INT (5)
+
+);
