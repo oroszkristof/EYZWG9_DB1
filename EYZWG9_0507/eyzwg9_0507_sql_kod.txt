@@ -1,3 +1,72 @@
+1. FELADAT
+
+1.
+SELECT Típus, AVG(Ár)
+FROM Auto2
+GROUP BY Típus;
+
+2.
+SELECT Típus, COUNT(*)
+FROM Auto2
+WHERE Szín = 'Piros'
+GROUP BY Típus
+ORDER BY Típus;
+
+3.
+SELECT Szín, MIN(Ár), MAX(Ár)
+FROM Auto2
+GROUP BY Szín;
+
+4.
+SELECT Típus, AVG(Ár)
+FROM Auto2
+GROUP BY Típus
+HAVING AVG(Ár) > 500000;
+
+5.
+SELECT t.Név, a.Típus, a.Ár
+FROM Auto2 a, Tulajdonos2 t;
+
+6.
+SELECT t.Név, a.Típus, a.Ár
+FROM Auto2 a
+JOIN Tulajdonos2 t ON a.Tulaj = t.Tkód;
+
+7.
+SELECT a.Rendszám, t.Név
+FROM Auto2 a
+JOIN Tulajdonos2 t ON a.Tulaj = t.Tkód
+WHERE t.Cím = 'Pécs';
+
+8.
+SELECT t.Név, COUNT(*)
+FROM Auto2 a
+JOIN Tulajdonos2 t ON a.Tulaj = t.Tkód
+GROUP BY t.Név;
+
+9.
+SELECT a1.Rendszám
+FROM Auto2 a1
+WHERE EXISTS (
+    SELECT 1 FROM Auto2 a2
+    WHERE a1.Típus = a2.Típus
+      AND a1.Kor > a2.Kor
+      AND a1.Ár > a2.Ár
+);
+
+11.
+SELECT Rendszám
+FROM Auto2
+WHERE Ár < (SELECT MAX(Ár) FROM Auto2 WHERE Szín = 'Piros');
+
+12.
+SELECT Név
+FROM Tulajdonos2
+WHERE Tkód NOT IN (SELECT Tulaj FROM Auto2);
+
+
+
+------------------------------------
 3.FELADAT
 
 Megvalósítás: Apex
